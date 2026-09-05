@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Click the Cat 🐱</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="wrap">
+    <h1>Click the Cat</h1>
+    <p class="subtitle">Every click makes a happier cat.</p>
+
+    <div class="score-board">
+      <div class="score-main">
+        <span id="score">0</span>
+        <span class="score-label">clicks</span>
+      </div>
+      <div class="score-sub">
+        <span id="cps">0</span> clicks/sec (best)
+      </div>
+    </div>
+
+    <!--
+      🐾 Want to use your OWN photo instead of the drawn cat?
+      1. Add your (unwatermarked, your-own) image file to this folder, e.g. "my-cat.jpg"
+      2. Replace the <div id="cat"> ... </div> block below with:
+         <img id="cat" src="my-cat.jpg" alt="Click the cat">
+      3. It already has the click handling attached in game.js via id="cat"
+    -->
+    <div id="cat-area">
+      <div id="cat" role="button" tabindex="0" aria-label="Click the cat">
+        <svg viewBox="0 0 300 280" xmlns="http://www.w3.org/2000/svg" id="cat-svg">
+          <!-- ears -->
+          <polygon points="60,90 20,10 110,60" fill="#c98a5b"/>
+          <polygon points="240,90 280,10 190,60" fill="#c98a5b"/>
+          <polygon points="65,80 45,30 100,62" fill="#f4c9a8"/>
+          <polygon points="235,80 255,30 200,62" fill="#f4c9a8"/>
+
+          <!-- head -->
+          <ellipse cx="150" cy="160" rx="115" ry="100" fill="#d99d6b"/>
+
+          <!-- stripes -->
+          <path d="M150 70 L150 130" stroke="#a86b3f" stroke-width="10" stroke-linecap="round"/>
+          <path d="M120 75 L128 128" stroke="#a86b3f" stroke-width="8" stroke-linecap="round"/>
+          <path d="M180 75 L172 128" stroke="#a86b3f" stroke-width="8" stroke-linecap="round"/>
+
+          <!-- face patch -->
+          <ellipse cx="150" cy="205" rx="70" ry="55" fill="#f4dcc4"/>
+
+          <!-- eyes -->
+          <g id="eyes">
+            <ellipse cx="112" cy="165" rx="16" ry="20" fill="#f2b134"/>
+            <ellipse cx="188" cy="165" rx="16" ry="20" fill="#f2b134"/>
+            <circle cx="112" cy="168" r="7" fill="#1a1a1a"/>
+            <circle cx="188" cy="168" r="7" fill="#1a1a1a"/>
+            <circle cx="115" cy="163" r="2" fill="#fff"/>
+            <circle cx="191" cy="163" r="2" fill="#fff"/>
+          </g>
+
+          <!-- closed eyes (happy click state) -->
+          <g id="eyes-happy" style="display:none;">
+            <path d="M98 165 Q112 150 126 165" stroke="#1a1a1a" stroke-width="5" fill="none" stroke-linecap="round"/>
+            <path d="M174 165 Q188 150 202 165" stroke="#1a1a1a" stroke-width="5" fill="none" stroke-linecap="round"/>
+          </g>
+
+          <!-- nose -->
+          <polygon points="150,195 141,208 159,208" fill="#e8836a"/>
+
+          <!-- mouth -->
+          <path d="M150 208 Q150 218 138 218" stroke="#7a4a2b" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <path d="M150 208 Q150 218 162 218" stroke="#7a4a2b" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+          <!-- whiskers -->
+          <g stroke="#fff" stroke-width="2.5" stroke-linecap="round">
+            <path d="M75 195 L15 185"/>
+            <path d="M75 205 L15 205"/>
+            <path d="M75 215 L18 228"/>
+            <path d="M225 195 L285 185"/>
+            <path d="M225 205 L285 205"/>
+            <path d="M225 215 L282 228"/>
+          </g>
+        </svg>
+      </div>
+      <div id="click-fx-layer"></div>
+    </div>
+
+    <div class="hint">Click / tap the cat!</div>
+
+    <div class="milestones">
+      <div class="milestone" data-at="10">🐾 10</div>
+      <div class="milestone" data-at="50">😸 50</div>
+      <div class="milestone" data-at="100">🎉 100</div>
+      <div class="milestone" data-at="500">🏆 500</div>
+      <div class="milestone" data-at="1000">👑 1000</div>
+    </div>
+
+    <button id="reset-btn">Reset</button>
+  </div>
+
+  <div id="toast"></div>
+
+<script src="game.js"></script>
+</body>
+</html>
